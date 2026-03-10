@@ -1,5 +1,6 @@
 from fastapi.testclient import TestClient
 from app.main import app
+from app.main import add
 
 client = TestClient(app)
 
@@ -11,3 +12,6 @@ def test_read_root():
 def test_health():
     response = client.get("/health")
     assert response.json() == {"status": "ok"}
+
+def test_add():
+    assert add(2, 3) == 5
